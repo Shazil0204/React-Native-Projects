@@ -2,6 +2,29 @@ import { Image, Text, View } from "react-native";
 import { Tabs, Redirect } from "expo-router";
 import Icons, { icons } from "../../constants";
 const TabsLayout = () => {
+  const tabScreens = [
+    {
+      name: "home",
+      title: "Home",
+      icon: icons.home,
+    },
+    {
+      name: "bookmark",
+      title: "Bookmark",
+      icon: icons.bookmark,
+    },
+    {
+      name: "create",
+      title: "Create",
+      icon: icons.plus,
+    },
+    {
+      name: "profile",
+      title: "Profile",
+      icon: icons.profile,
+    },
+  ];
+
   const TabIcon = ({ icon, color, name, focused }) => {
     return (
       <View className="items-center justify-center gap-2">
@@ -36,66 +59,24 @@ const TabsLayout = () => {
           },
         }}
       >
-        <Tabs.Screen
-          name="home"
-          options={{
-            title: "Home",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.home}
-                color={color}
-                name="Home"
-                focused={focused}
-              />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="bookmark"
-          options={{
-            title: "Bookmark",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.bookmark}
-                color={color}
-                name="Bookmark"
-                focused={focused}
-              />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="create"
-          options={{
-            title: "Create",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.plus}
-                color={color}
-                name="Create"
-                focused={focused}
-              />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="profile"
-          options={{
-            title: "Profile",
-            headerShown: false,
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                icon={icons.profile}
-                color={color}
-                name="Profile"
-                focused={focused}
-              />
-            ),
-          }}
-        />
+        {tabScreens.map((tab) => (
+          <Tabs.Screen
+            key={tab.name}
+            name={tab.name}
+            options={{
+              title: tab.title,
+              headerShown: false,
+              tabBarIcon: ({ color, focused }) => (
+                <TabIcon
+                  icon={tab.icon}
+                  color={color}
+                  name={tab.title}
+                  focused={focused}
+                />
+              ),
+            }}
+          />
+        ))}
       </Tabs>
     </>
   );

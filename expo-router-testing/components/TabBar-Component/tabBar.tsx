@@ -1,11 +1,27 @@
-import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useRef } from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import TabIcon from "./tabIcon";
 
 function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const primaryColor = "#0891b2";
   const greyColor = "#737373";
+
+  const animations = useRef(new Animated.Value(state.index)).current;
+
+  useEffect(() => {
+    Animated.timing(animations, {
+      toValue: state.index,
+      duration: 250, // Duration of the animation
+      useNativeDriver: false, // Set to true if animating transform properties
+    }).start();
+  }, [state.index]);
 
   return (
     <View style={styles.tabbar}>
@@ -53,17 +69,16 @@ function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             <View style={[isFocused ? styles.iconIsFocused : null]}>
               <TabIcon isFocused={isFocused} routeName={route.name} />
             </View>
-            <Text
-              style={[
-                {
-                  color: greyColor,
-                  fontSize: 14, // Increase size if focused
-                  textAlign: "center", // Center the text
-                },
-              ]}
+            <Animated.Text
+              style={{
+                color: greyColor,
+                fontSize: 14,
+                textAlign: "center",
+                opacity: isFocused ? 0 : 1, // Show when focused, hide otherwise
+              }}
             >
-              {isFocused ? null : label}
-            </Text>
+              {label} {/* Show label for the focused tab */}
+            </Animated.Text>
           </TouchableOpacity>
         );
       })}
@@ -84,12 +99,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingVertical: 15,
     borderRadius: 25,
-    borderCurve: "continuous",
-    shadowColor: "black", // iOS
-    shadowOffset: { width: 0, height: 10 }, // iOS
-    shadowRadius: 10, // iOS
-    shadowOpacity: 0.3, // iOS (adjusted for better visibility)
-    elevation: 10, // Android
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 10,
+    shadowOpacity: 0.3,
+    elevation: 10,
   },
   tabbarItem: {
     flex: 1,

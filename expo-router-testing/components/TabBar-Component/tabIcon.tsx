@@ -32,7 +32,7 @@ const TabIcon: React.FC<TabIconProps> = ({ isFocused, routeName }) => {
       break;
 
     default:
-      iconName = "home"; // Fallback icon
+      iconName = "home";
   }
 
   return (

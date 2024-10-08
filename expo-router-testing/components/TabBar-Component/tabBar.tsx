@@ -1,18 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Animated,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Animated } from "react-native";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import TabIcon from "./tabIcon";
 
 function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
-  const primaryColor = "#0891b2";
   const greyColor = "#737373";
-
   const animations = useRef(new Animated.Value(state.index)).current;
 
   useEffect(() => {

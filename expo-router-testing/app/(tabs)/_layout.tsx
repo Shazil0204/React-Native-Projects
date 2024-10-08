@@ -1,5 +1,3 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { Tabs } from "expo-router";
 import TabBar from "@/components/TabBar-Component/tabBar";
 import Header from "@/components/header";

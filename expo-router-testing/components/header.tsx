@@ -1,12 +1,13 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Header</Text>
-      <Link href={{ pathname: "/(auth)/settings" }}>Go to settings</Link>
+      <Link style={styles.text} href="/(auth)/settings">
+        Go to
+      </Link>
     </View>
   );
 };
@@ -25,6 +26,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 50,
     color: "green",
-    fontWeight: "condensedBold",
+    fontWeight: "bold",
   },
 });

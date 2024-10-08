@@ -21,6 +21,16 @@ const TabIcon: React.FC<TabIconProps> = ({ isFocused, routeName }) => {
     case "profile":
       iconName = isFocused ? "person" : "person-outline";
       break;
+    case "settings":
+      iconName = isFocused ? "settings" : "settings-outline";
+      break;
+    case "contact":
+      iconName = isFocused ? "mail" : "mail-outline";
+      break;
+    case "description":
+      iconName = isFocused ? "document-text" : "document-text-outline";
+      break;
+
     default:
       iconName = "home"; // Fallback icon
   }
